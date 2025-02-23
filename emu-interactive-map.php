@@ -41,7 +41,7 @@ function create_emu_interactive_map_post_type() {
         'show_ui'            => true,
         'show_in_menu'       => true,
         'menu_position'      => 5,
-        'supports'           => array('title', 'editor', 'custom-fields'),
+        'supports'           => array('title'),
         'has_archive'        => true,
         'rewrite'            => array('slug' => 'emu-interactive-map'),
     );
