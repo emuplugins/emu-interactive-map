@@ -5,7 +5,6 @@ require_once 'classess/state.php';
 require_once 'classess/widget.php';
 require_once 'etc/default_states.php';
 require_once 'etc/state_codes.php';
-require_once 'shortcodes/map_render.php';
 
 // FUNCTIONS
 require_once 'functions/state_proccess.php';
