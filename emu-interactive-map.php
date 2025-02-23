@@ -57,7 +57,7 @@ function register_widget_metabox() {
         'widget_metabox', // ID do metabox
         'Widgets', // Título do metabox
         'widget_metabox_callback', // Função callback
-        'post', // Tipo de post onde o metabox aparecerá
+        'emu-interactive-map', // Tipo de post onde o metabox aparecerá
         'normal', // Localização no editor (normal, side, etc.)
         'high' // Prioridade do metabox
     );
