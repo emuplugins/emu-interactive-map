@@ -26,7 +26,7 @@ function widget_proccess() {
                 $widget[7],  // color
                 $widget[9]   // classe personalizada
             );
-            $states[$stateCode]->addWidget($newWidget);
+            $states[$stateCode]->add_widget($newWidget);
         }
     }
 }

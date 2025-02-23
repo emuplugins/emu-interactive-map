@@ -32,7 +32,7 @@ function emu_interactive_map_shortcode($atts)
     }
 
     // START
-    stateProccess();
+    state_proccess();
 
     // Recupera os widgets armazenados no post meta
     $post_widgets = get_post_meta($post_id, '_widget_data', true);
@@ -51,9 +51,9 @@ function emu_interactive_map_shortcode($atts)
     $widgets = array_merge($widgets, $post_widgets);
 
     // Passa os widgets para a função widgetProccess
-    widgetProccess($widgets);
+    widget_proccess($widgets);
 
-    renderAllWidgets();
+    render_all_widgets();
     // Chama o template brasil.php
     ob_start(); // Inicia o buffer de saída
 
