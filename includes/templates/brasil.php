@@ -8,6 +8,7 @@ svg.widgets-container {
 .default {
     pointer-events: none;
 }
+
 .brazil-map {
     --widget-text-color: #fff;
     --widget-text-color-hover: #000;

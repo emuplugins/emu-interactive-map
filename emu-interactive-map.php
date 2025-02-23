@@ -23,6 +23,7 @@ require_once 'includes/functions/save-widgets.php';
 require_once 'includes/functions/post-type/create-map-post-type.php';
 require_once 'includes/functions/post-type/register-widget-metabox.php';
 require_once 'includes/functions/post-type/render-metabox.php';
+require_once 'includes/functions/post-type/render-map-preview.php';
 
 // Função para registrar o Custom Post Type
 add_action('init', 'create_map_post_type');
