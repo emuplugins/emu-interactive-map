@@ -560,7 +560,7 @@ xml:space="preserve">
          139.839,104.393 142.123,103.537 154.967,76.565 157.108,70.571 159.676,67.574 161.817,63.864" />
  </g>
 </g>
-<?= renderallwidgets() ?>
+<?= render_all_widgets() ?>
 </svg>
 </div>
 <!-- Creditos to olx.com.br -->

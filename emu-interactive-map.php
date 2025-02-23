@@ -17,15 +17,16 @@
  * WC tested up to: 5.0
  */
 
-include_once 'includes/shortcodes/map_render.php';
+include_once 'includes/shortcodes/map-render.php';
 require_once 'update-handler.php';
-require_once 'includes/functions/save_widget_metabox_data.php';
-require_once '';
-
+require_once 'includes/functions/save-widgets.php';
+require_once 'includes/functions/post-type/create-map-post-type.php';
+require_once 'includes/functions/post-type/register-widget-metabox.php';
+require_once 'includes/functions/post-type/render-metabox.php';
 
 // Função para registrar o Custom Post Type
 
-add_action('init', 'create_emu_interactive_map_post_type');
+add_action('init', 'create_map_post_type');
 
 
 

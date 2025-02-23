@@ -4,7 +4,7 @@ if (!isset($stateCodes)) {
     $stateCodes = [];
 };
 
-function widgetProccess() {
+function widget_proccess() {
     global $states, $widgets, $stateCodes;
     
     if (!isset($states)) {

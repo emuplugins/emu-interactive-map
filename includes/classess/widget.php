@@ -50,11 +50,11 @@ class Widget {
         return $this->link ? $output . '</a>' : $output;
     }
 
-    public function getCustomClass() {
+    public function get_custom_class() {
         return $this->customClass;
     }
 
-    public function setCustomClass($customClass) {
+    public function set_custom_class($customClass) {
         $this->customClass = $customClass;
     }
 }

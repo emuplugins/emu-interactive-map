@@ -4,7 +4,7 @@ if (!isset($stateCodes)) {
     $stateCodes = [];
 };
 
-function stateProccess() {
+function state_proccess() {
     global $states, $stateCodes;
     
     $states = [];

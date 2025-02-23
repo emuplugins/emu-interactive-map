@@ -3,15 +3,16 @@
 // CLASSES
 require_once dirname(__DIR__) . '/classess/state.php';
 require_once dirname(__DIR__) . '/classess/widget.php';
-require_once dirname(__DIR__) . '/etc/default_states.php';
-require_once dirname(__DIR__) . '/etc/state_codes.php';
+require_once dirname(__DIR__) . '/etc/default-states.php';
+require_once dirname(__DIR__) . '/etc/state-codes.php';
 
 // FUNCTIONS
-require_once dirname(__DIR__) . '/functions/state_proccess.php';
-require_once dirname(__DIR__) . '/functions/widget_proccess.php';
-require_once dirname(__DIR__) . '/functions/render_all_widgets.php';
+require_once dirname(__DIR__) . '/functions/state-proccess.php';
+require_once dirname(__DIR__) . '/functions/widget-proccess.php';
+require_once dirname(__DIR__) . '/functions/render-all-widgets.php';
 
-function emu_interactive_map_shortcode($atts) {
+function emu_interactive_map_shortcode($atts)
+{
 
     global $widgets;
     // Extrai o ID do post passado no shortcode, com valor padrão 0 se não for fornecido
@@ -51,13 +52,13 @@ function emu_interactive_map_shortcode($atts) {
 
     // Passa os widgets para a função widgetProccess
     widgetProccess($widgets);
-    
+
     renderAllWidgets();
     // Chama o template brasil.php
     ob_start(); // Inicia o buffer de saída
 
     // Corrigir o caminho para o template
-    $template_path = plugin_dir_path(__DIR__) . 'templates/brasil.php'; 
+    $template_path = plugin_dir_path(__DIR__) . 'templates/brasil.php';
 
     include $template_path; // Inclui o template
 

@@ -9,11 +9,11 @@ class State
         $this->code = $code;
     }
 
-    public function addWidget(Widget $widget) {
+    public function add_widget(Widget $widget) {
         $this->widgets[] = $widget;
     }
 
-    public function renderWidgets() {
+    public function render_widgets() {
         $positions = [
             'AC' => [35, 135],    // Acre
             'AL' => [335, 135],    // Alagoas

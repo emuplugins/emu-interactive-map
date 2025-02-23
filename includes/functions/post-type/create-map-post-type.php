@@ -1,6 +1,6 @@
 <?php
 
-function create_emu_interactive_map_post_type()
+function create_map_post_type()
 {
     $args = array(
         'labels' => array(
