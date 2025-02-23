@@ -20,7 +20,7 @@ include_once 'includes/start_map.php';
 include_once 'includes/shortcodes/map_render.php';
 require_once 'update-handler.php';
 
- // Função para registrar o Custom Post Type
+// Função para registrar o Custom Post Type
 function create_emu_interactive_map_post_type() {
     $args = array(
         'labels' => array(
@@ -49,9 +49,9 @@ function create_emu_interactive_map_post_type() {
     register_post_type('emu_interactive_map', $args);
 }
 
-add_action('init', 'create_emu_interactive_map_post_type'); 
+add_action('init', 'create_emu_interactive_map_post_type');
 
-
+// Registrar o metabox para os widgets
 function register_widget_metabox() {
     add_meta_box(
         'widget_metabox', // ID do metabox
@@ -64,6 +64,7 @@ function register_widget_metabox() {
 }
 add_action('add_meta_boxes', 'register_widget_metabox');
 
+// Função callback do metabox
 function widget_metabox_callback($post) {
     // Obter o valor atual do post meta
     $widgets = get_post_meta($post->ID, '_widget_data', true);
@@ -85,7 +86,6 @@ function widget_metabox_callback($post) {
         'color' => 'var(--widget-text-color)',
         'customClass' => 'default'
     );
-
     ?>
     <div id="widget-data">
         <ul>
@@ -153,6 +153,7 @@ function widget_metabox_callback($post) {
     <?php
 }
 
+// Função para salvar os dados do metabox
 function save_widget_metabox_data($post_id) {
     // Verificar nonce e outras condições antes de salvar
     if (!isset($_POST['widget']) || !is_array($_POST['widget'])) {
