@@ -14,7 +14,7 @@ svg.widgets-container {
     --widget-text-color-hover: #000;
     --state-stroke-color:rgb(252, 252, 252);
     --state-stroke-width: 0.5;
-    --state-fill-color:rgb(5, 100, 60);
+    --state-fill-color:rgba(5, 100, 60, 0.18);
     --state-fill-color-hover:rgb(11, 141, 102);
     --map-scale: 3;
     --map-scale-mobile: 1;

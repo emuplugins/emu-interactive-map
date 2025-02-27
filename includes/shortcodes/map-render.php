@@ -69,7 +69,6 @@ function emu_interactive_map_shortcode($atts)
 
     // Se não houver widgets no post meta, inicializa um array vazio
     if (!$post_widgets) {
-        var_dump($post_widgets);
         $post_widgets = array(); // Inicializa um array vazio se não houver widgets
     }
 
