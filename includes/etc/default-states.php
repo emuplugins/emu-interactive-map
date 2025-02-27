@@ -1,6 +1,6 @@
 <?php
 
-// DEFINE WIDGETS
+// DEFINE WIDGETS PADRÕES PARA O MAPA, NO CASO OS ESTADOS DO BRASIL
 $widgets = array (
     array('Acre', 'text', ['fontSize' => '6.5'], '', 0, 0, 600, 'var(--widget-text-color)', 'AC', 'default'),
     array('AL', 'text', ['fontSize' => '5.5'], '', 0, 0, 600, 'var(--widget-text-color)', 'AL', 'default'),

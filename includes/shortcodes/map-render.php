@@ -8,8 +8,38 @@ require_once dirname(__DIR__) . '/etc/state-codes.php';
 
 // FUNCTIONS
 require_once dirname(__DIR__) . '/functions/state-proccess.php';
-require_once dirname(__DIR__) . '/functions/widget-proccess.php';
 require_once dirname(__DIR__) . '/functions/render-all-widgets.php';
+
+if (!isset($stateCodes)) {
+    $stateCodes = [];
+};
+
+function widget_proccess() {
+    global $states, $widgets, $stateCodes;
+    
+    if (!isset($states)) {
+        $states = [];
+    }
+    
+    foreach ($widgets as $widget) {
+        $stateCode = $widget[8]; // código do estado
+        
+        if (isset($states[$stateCode])) {
+            $newWidget = new Widget(
+                $widget[0],  // content
+                $widget[1],  // type
+                $widget[2],  // options
+                $widget[3],  // link
+                $widget[4],  // x
+                $widget[5],  // y
+                $widget[6],  // weight
+                $widget[7],  // color
+                $widget[9]   // classe personalizada
+            );
+            $states[$stateCode]->add_widget($newWidget);
+        }
+    }
+}
 
 function emu_interactive_map_shortcode($atts)
 {
@@ -35,7 +65,7 @@ function emu_interactive_map_shortcode($atts)
     state_proccess();
 
     // Recupera os widgets armazenados no post meta
-    $post_widgets = get_post_meta($post_id, '_widget_data', true);
+    $post_widgets = get_post_meta($post_id, 'widgets', true);
 
     // Se não houver widgets no post meta, inicializa um array vazio
     if (!$post_widgets) {

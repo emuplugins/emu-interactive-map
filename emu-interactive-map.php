@@ -19,17 +19,13 @@
 
 require_once 'includes/shortcodes/map-render.php';
 require_once 'update-handler.php';
-require_once 'includes/functions/save-widgets.php';
 require_once 'includes/functions/post-type/create-map-post-type.php';
-require_once 'includes/functions/post-type/register-widget-metabox.php';
-require_once 'includes/functions/post-type/render-metabox.php';
-require_once 'includes/functions/post-type/render-map-preview.php';
+require_once 'includes/functions/post-type/metabox-preview.php';
+
+define('EMU_PLUGIN_FILE', __FILE__);
 
 // Função para registrar o Custom Post Type
 add_action('init', 'create_map_post_type');
-
-// Registrar o metabox para os widgets
-add_action('add_meta_boxes', 'register_widget_metabox');
 
 // SAVE METABOX FUNCTION
 add_action('save_post', 'save_widget_metabox_data');

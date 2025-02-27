@@ -1,5 +1,9 @@
 <?php
 
+if ( ! defined('ABSPATH')) exit;
+
+
+// CRIA O POST TYPE DE MAPAS
 function create_map_post_type()
 {
     $args = array(

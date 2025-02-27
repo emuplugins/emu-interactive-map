@@ -1,5 +1,6 @@
 <?php
 
+// DEFINE OS CÓDIGOS DOS ESTADOS DO BRASIL DISPONÍVEIS PARA O MAPA
 $stateCodes = [
     'AC' => 'Acre', 'AL' => 'Alagoas', 'AP' => 'Amapá', 'AM' => 'Amazonas', 'BA' => 'Bahia',
     'CE' => 'Ceará', 'DF' => 'Distrito Federal', 'ES' => 'Espírito Santo', 'GO' => 'Goiás', 'MA' => 'Maranhão',
