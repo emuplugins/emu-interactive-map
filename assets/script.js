@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "<?php echo admin_url('admin-ajax.php'); ?>", true);
+        xhr.open("POST", 'admin-ajax.php', true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
         xhr.onreadystatechange = function () {
@@ -126,7 +126,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 var xhr = new XMLHttpRequest();
                 var postId = document.querySelector(".emu-box-wrapper").getAttribute("data-post-id");
 
-                xhr.open("POST", "<?php echo admin_url('admin-ajax.php'); ?>", true);
+                xhr.open("POST", 'admin-ajax.php', true);
                 xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
                 xhr.onreadystatechange = function () {
@@ -164,7 +164,7 @@ document.querySelectorAll('.emu-group input[type="text"]').forEach(function(inpu
 
         // Cria uma requisição AJAX para salvar as alterações
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "<?php echo admin_url('admin-ajax.php'); ?>", true);
+        xhr.open("POST", 'admin-ajax.php', true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
         // Função chamada quando a requisição AJAX é concluída

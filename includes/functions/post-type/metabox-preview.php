@@ -214,13 +214,6 @@ function save_widget_metabox_data($post_id) {
 
 add_action('save_post', 'save_widget_metabox_data');
 
-
-
-
-
-
-
-
 function emu_update_widget() {
     // Verifica permissão
     if (!current_user_can('edit_posts')) {

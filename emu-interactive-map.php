@@ -39,5 +39,9 @@ add_action('admin_enqueue_scripts', 'enqueue_widget_metabox_style');
 
 function enqueue_widget_metabox_script() {
     wp_enqueue_script('widget-metabox-script', EMU_PLUGIN_URL . '/assets/script.js', array('jquery'), null, true);
+    // Passar a URL do admin-ajax.php para o JavaScript
+    wp_localize_script('widget-metabox-script', 'ajax_url', array(
+        'ajax_url' => admin_url('admin-ajax.php')
+    ));
 }
 add_action('admin_enqueue_scripts', 'enqueue_widget_metabox_script');
