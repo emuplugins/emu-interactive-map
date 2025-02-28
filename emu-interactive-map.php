@@ -23,17 +23,21 @@ require_once 'includes/functions/post-type/create-map-post-type.php';
 require_once 'includes/functions/post-type/metabox-preview.php';
 
 define('EMU_PLUGIN_FILE', __FILE__);
-
+define('EMU_PLUGIN_URL', plugin_dir_url(__FILE__));
+define('EMU_PLUGIN_DIR', plugin_dir_path(__FILE__));
 // Função para registrar o Custom Post Type
 add_action('init', 'create_map_post_type');
 
 // SAVE METABOX FUNCTION
 add_action('save_post', 'save_widget_metabox_data');
 
-// ENQEUE SCRIPTS
-function enqueue_widget_metabox_script()
-{
-    wp_enqueue_script('widget-metabox-script', plugin_dir_url(__FILE__) . '/assets/js/widget-metabox.js', array(), null, true);
+// ENQEUE STYLES
+function enqueue_widget_metabox_style() {
+    wp_enqueue_style('widget-metabox-style', EMU_PLUGIN_URL . '/assets/styles.css', array(), null, 'all');
 }
+add_action('admin_enqueue_scripts', 'enqueue_widget_metabox_style');
 
+function enqueue_widget_metabox_script() {
+    wp_enqueue_script('widget-metabox-script', EMU_PLUGIN_URL . '/assets/script.js', array('jquery'), null, true);
+}
 add_action('admin_enqueue_scripts', 'enqueue_widget_metabox_script');
