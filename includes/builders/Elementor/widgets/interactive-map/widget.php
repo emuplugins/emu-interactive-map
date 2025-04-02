@@ -446,10 +446,11 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 			]
 		);
 
-		$this->add_group_control(
+		$repeater->add_group_control(
 			\Elementor\Group_Control_Typography::get_type(),
 			[
-				'name' => 'state_typography .default > foreignObject > div',
+				'name' => 'state_typography',
+				'selector' => 'html body {{WRAPPER}} .default > foreignObject > div',
 			]
 		);
 
