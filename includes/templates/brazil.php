@@ -63,7 +63,7 @@ ob_start();
     color:white;
     font-family: sans-serif;
 }
-.brazil-map  svg > foreignObject,.brazil-map  svg > foreignObject > div{
+.brazil-map  svg > foreignObject,.brazil-map  svg > foreignObject > div > div{
     width:20px;
     height: 20px;
 }

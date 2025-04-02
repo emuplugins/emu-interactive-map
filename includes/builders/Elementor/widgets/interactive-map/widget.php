@@ -258,7 +258,7 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 				'label' => esc_html__( 'Color', 'textdomain' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} {{CURRENT_ITEM}} foreignObject > div' => 'background-color: {{VALUE}}!important'
+					'{{WRAPPER}} {{CURRENT_ITEM}} foreignObject > div > div' => 'background-color: {{VALUE}}!important'
 				],
 			]
 		);
@@ -324,7 +324,7 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 					'size' => 100,
 				],
 				'selectors' => [
-					'{{WRAPPER}} {{CURRENT_ITEM}} foreignObject, {{WRAPPER}} {{CURRENT_ITEM}} foreignObject > div' => 'width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} {{CURRENT_ITEM}} foreignObject, {{WRAPPER}} {{CURRENT_ITEM}} foreignObject > div > div' => 'width: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -346,7 +346,7 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 					'size' => 50,
 				],
 				'selectors' => [
-					'{{WRAPPER}} {{CURRENT_ITEM}} foreignObject, {{WRAPPER}} {{CURRENT_ITEM}} foreignObject > div' => 'height: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} {{CURRENT_ITEM}} foreignObject, {{WRAPPER}} {{CURRENT_ITEM}} foreignObject > div > div' => 'height: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -366,7 +366,7 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 					'isLinked' => true,
 				],
 				'selectors' => [
-					'{{WRAPPER}} {{CURRENT_ITEM}} foreignObject > div' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} {{CURRENT_ITEM}} foreignObject > div > div' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -375,7 +375,7 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 			\Elementor\Group_Control_Border::get_type(),
 			[
 				'name' => 'content_border-radius',
-				'selector' => '{{WRAPPER}} {{CURRENT_ITEM}} foreignObject > div',
+				'selector' => '{{WRAPPER}} {{CURRENT_ITEM}} foreignObject > div > div',
 			]
 		);
 		$repeater->add_control(
@@ -393,7 +393,7 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 					'isLinked' => true,
 				],
 				'selectors' => [
-					'{{WRAPPER}} {{CURRENT_ITEM}} foreignObject > div' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} {{CURRENT_ITEM}} foreignObject > div > div' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -450,7 +450,7 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 			\Elementor\Group_Control_Typography::get_type(),
 			[
 				'name' => 'state_typography',
-				'selector' => 'html body {{WRAPPER}} .default > foreignObject > div',
+				'selector' => 'html body {{WRAPPER}} .default > foreignObject > div > div',
 			]
 		);
 
@@ -460,7 +460,7 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 				'label' => esc_html__( 'State Name color', 'textdomain' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .default > foreignObject > div' => 'color: {{VALUE}}'
+					'{{WRAPPER}} .default > foreignObject > div > div' => 'color: {{VALUE}}'
 				],
 			]
 		);

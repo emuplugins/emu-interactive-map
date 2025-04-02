@@ -124,7 +124,7 @@ class EmuBrazilMap
                     $style = implode(' ', $styles);
 
                     $widgetsWrapper .= sprintf(
-                        '<foreignObject><div style="%s">%s</div></foreignObject>',
+                        '<foreignObject><div style="%s"><div >%s</div></div></foreignObject>',
                         $style, $widget['content']
                     );
 
