@@ -446,6 +446,17 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 			]
 		);
 
+		$this->add_control(
+			'state_color',
+			[
+				'label' => esc_html__( 'State Name color', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .default > foreignObject > div > div' => 'color: {{VALUE}}'
+				],
+			]
+		);
+
 		$this->add_group_control(
 			\Elementor\Group_Control_Typography::get_type(),
 			[
@@ -457,7 +468,7 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'state_pos_x',
 			[
-				'label' => esc_html__( 'Horizontal Position', 'textdomain' ),
+				'label' => esc_html__( 'Horizontal state name offset', 'textdomain' ),
 				'type' => \Elementor\Controls_Manager::SLIDER,
 				'size_units' => [ 'em' ],
 				'range' => [
@@ -480,7 +491,7 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 		$this->add_responsive_control(
 			'state_pos_y',
 			[
-				'label' => esc_html__( 'Vertical Position', 'textdomain' ),
+				'label' => esc_html__( 'Vertical state name offset', 'textdomain' ),
 				'type' => \Elementor\Controls_Manager::SLIDER,
 				'size_units' => [ 'em' ],
 				'range' => [
@@ -499,19 +510,6 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 				],
 			]
 		);
-		
-
-		$this->add_control(
-			'state_color',
-			[
-				'label' => esc_html__( 'State Name color', 'textdomain' ),
-				'type' => \Elementor\Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .default > foreignObject > div > div' => 'color: {{VALUE}}'
-				],
-			]
-		);
-
 
 		$this->start_controls_tabs(
 			'state_tabs'
