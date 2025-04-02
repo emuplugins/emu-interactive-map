@@ -454,6 +454,53 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 			]
 		);
 
+		$this->add_responsive_control(
+			'state_pos_x',
+			[
+				'label' => esc_html__( 'Horizontal Position', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => [ 'em' ],
+				'range' => [
+					'em' => [
+						'min' => -10,
+						'max' => 10,
+						'step' => 0.1,
+					],
+				],
+				'default' => [
+					'size' => 0,
+					'unit' => 'em',
+				],
+				'selectors' => [
+					'html body {{WRAPPER}} .default > foreignObject > div' => 'transform: translate( {{state_pos_x.SIZE}}{{state_pos_x.UNIT}}, {{state_pos_y.SIZE}}{{state_pos_y.UNIT}});',
+				],
+			]
+		);
+		
+		$this->add_responsive_control(
+			'state_pos_y',
+			[
+				'label' => esc_html__( 'Vertical Position', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => [ 'em' ],
+				'range' => [
+					'em' => [
+						'min' => -10,
+						'max' => 10,
+						'step' => 0.1,
+					],
+				],
+				'default' => [
+					'size' => 0,
+					'unit' => 'em',
+				],
+				'selectors' => [
+					'html body {{WRAPPER}} .default > foreignObject > div' => 'transform: translate( {{state_pos_x.SIZE}}{{state_pos_x.UNIT}}, {{state_pos_y.SIZE}}{{state_pos_y.UNIT}});',
+				],
+			]
+		);
+		
+
 		$this->add_control(
 			'state_color',
 			[
