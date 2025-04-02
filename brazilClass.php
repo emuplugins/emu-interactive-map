@@ -112,13 +112,13 @@ class EmuBrazilMap
                         $styles[] = 'font-size:' . $widget['options']['fontSize'] . ';';
                     }
 
-                    if (!empty($widget['options']['fontWeight'])) {
-                        $styles[] = 'font-weight:;';
-                    }
+                    // if (!empty($widget['options']['fontWeight'])) {
+                    //     $styles[] = 'font-weight:;';
+                    // }
 
-                    if (!empty($widget['options']['color'])) {
-                        $styles[] = 'color:' . $widget['options']['color'] . ';';
-                    }
+                    // if (!empty($widget['options']['color'])) {
+                    //     $styles[] = 'color:' . $widget['options']['color'] . ';';
+                    // }
 
                     // Junta os estilos em uma única string
                     $style = implode(' ', $styles);
