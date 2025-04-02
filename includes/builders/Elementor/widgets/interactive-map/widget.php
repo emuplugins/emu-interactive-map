@@ -446,6 +446,14 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 			]
 		);
 
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'state_typography',
+				'selector' => '{{WRAPPER}} svg > foreignObject > div',
+			]
+		);
+
 		$this->add_control(
 			'state_color',
 			[
@@ -456,6 +464,7 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 				],
 			]
 		);
+
 
 		$this->start_controls_tabs(
 			'state_tabs'
