@@ -60,6 +60,7 @@ ob_start();
 .brazil-map  svg > foreignObject > div{
     font-size:7px;
     font-weight: 500;
+    color:white;
     font-family: sans-serif;
 }
 .brazil-map  svg > foreignObject,.brazil-map  svg > foreignObject > div{
