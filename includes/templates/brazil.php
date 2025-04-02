@@ -1,14 +1,22 @@
-<?php if( ! defined('ABSPATH') ) exit; ?>
+<?php 
+
+
+function doBrazilMap($widgetsWrapper = '') {
+
+ob_start(); 
+?>
 
 <style>
-svg.widgets-container {
+
+/* estilos padrões, podem ser sobreescritos no editor */
+
+.brazil-map svg.widgets-container {
     overflow: visible;
 }
 
-.default {
+.brazil-map .default {
     pointer-events: none;
 }
-
 .brazil-map {
     --widget-text-color: #fff;
     --widget-text-color-hover: #000;
@@ -16,36 +24,30 @@ svg.widgets-container {
     --state-stroke-width: 0.5;
     --state-fill-color:rgba(5, 100, 60, 0.18);
     --state-fill-color-hover:rgb(11, 141, 102);
-    --map-scale: 3;
-    --map-scale-mobile: 1;
+    --map-scale: 1.4;
     --map-width: calc(353.845px * var(--map-scale));
     --map-height: calc(367.766px * var(--map-scale));
-    --map-width-mobile: calc(353.845px * var(--map-scale));
-    --map-height-mobile: calc(367.766px * var(--map-scale));
-}
-.brazil-map {
     width: var(--map-width);
     height: var(--map-height);
+    font-size:10px;
 }
-.state { 
+.brazil-map .state { 
     fill: var(--state-fill-color);
     stroke: var(--state-stroke-color);
     stroke-width: var(--state-stroke-width);
     transition: fill 0.2s ease;
 }
-
-
-
-.state:hover {
+.brazil-map .state:hover {
     fill: var(--state-fill-color-hover);
     stroke: var(--state-stroke-color);
     stroke-width: var(--state-stroke-width);
     cursor: pointer;
 }
-.widgets-container{
+.brazil-map .widgets-container{
     z-index: 99999;
     position:relative;
 }
+
 </style>
 
 <div class="brazil-map">
@@ -561,7 +563,17 @@ xml:space="preserve">
          139.839,104.393 142.123,103.537 154.967,76.565 157.108,70.571 159.676,67.574 161.817,63.864" />
  </g>
 </g>
-<?= render_all_widgets() ?>
+
+<?= $widgetsWrapper ?>
+
 </svg>
 </div>
 <!-- Creditos to olx.com.br -->
+
+<?php 
+
+return ob_get_clean();
+
+} 
+
+?>
