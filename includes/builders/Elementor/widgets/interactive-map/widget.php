@@ -137,7 +137,7 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 					],
 				],
 				'default' => ['px',
-					'size' => 50,
+					'size' => 0,
 				],
 				'selectors' => [
 					'{{WRAPPER}} {{CURRENT_ITEM}} image' => 'x: {{SIZE}};',
@@ -153,13 +153,13 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 				'size_units' => [ 'px'],
 				'range' => [
 					'px' => [
-						'min' => 10,
-						'max' => 300,
-						'step' => 5,
+						'min' => -100,
+						'max' => 100,
+						'step' => 1,
 					],
 				],
 				'default' => ['px',
-					'size' => 50,
+					'size' => 0,
 				],
 				'selectors' => [
 					'{{WRAPPER}} {{CURRENT_ITEM}} image' => 'y: {{SIZE}};',
@@ -175,9 +175,9 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 				'size_units' => [ 'px'],
 				'range' => [
 					'px' => [
-						'min' => 10,
+						'min' => 0,
 						'max' => 300,
-						'step' => 5,
+						'step' => 1,
 					],
 				],
 				'default' => ['px',
@@ -197,9 +197,9 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 				'size_units' => [ 'px'],
 				'range' => [
 					'px' => [
-						'min' => 10,
+						'min' => 0,
 						'max' => 300,
-						'step' => 5,
+						'step' => 1,
 					],
 				],
 				'default' => ['px',
@@ -249,6 +249,7 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 				'selectors' => [
 					'{{WRAPPER}} {{CURRENT_ITEM}} foreignObject *' => 'color: {{VALUE}}!important'
 				],
+				'default' => '#ffffff',
 			]
 		);
 		$repeater->add_control(
@@ -270,13 +271,13 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 				'size_units' => [ 'px'],
 				'range' => [
 					'px' => [
-						'min' => 10,
-						'max' => 300,
-						'step' => 5,
+						'min' => -100,
+						'max' => 100,
+						'step' => 1,
 					],
 				],
 				'default' => ['px',
-					'size' => 50,
+					'size' => 0,
 				],
 				'selectors' => [
 					'{{WRAPPER}} {{CURRENT_ITEM}} foreignObject' => 'transform: translate( {{SIZE}}{{UNIT}}, {{text_pos_y.SIZE}}{{text_pos_y.UNIT}} );',
@@ -292,13 +293,13 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 				'size_units' => [ 'px'],
 				'range' => [
 					'px' => [
-						'min' => 10,
-						'max' => 300,
-						'step' => 5,
+						'min' => -100,
+						'max' => 100,
+						'step' => 1,
 					],
 				],
 				'default' => ['px',
-					'size' => 50,
+					'size' => 0,
 				],
 				'selectors' => [
 					'{{WRAPPER}} {{CURRENT_ITEM}} foreignObject' => 'transform: translate( {{text_pos_x.SIZE}}{{text_pos_x.UNIT}}, {{SIZE}}{{UNIT}});',
@@ -314,13 +315,13 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 				'size_units' => [ 'px'],
 				'range' => [
 					'px' => [
-						'min' => 10,
+						'min' => 50,
 						'max' => 300,
-						'step' => 5,
+						'step' => 1,
 					],
 				],
 				'default' => ['px',
-					'size' => 50,
+					'size' => 100,
 				],
 				'selectors' => [
 					'{{WRAPPER}} {{CURRENT_ITEM}} foreignObject, {{WRAPPER}} {{CURRENT_ITEM}} foreignObject > div' => 'width: {{SIZE}}{{UNIT}};',
@@ -336,9 +337,9 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 				'size_units' => [ 'px'],
 				'range' => [
 					'px' => [
-						'min' => 10,
+						'min' => 50,
 						'max' => 300,
-						'step' => 5,
+						'step' => 1,
 					],
 				],
 				'default' => ['px',
@@ -423,7 +424,6 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 			]
 		);
 
-		
         $this->add_responsive_control(
 			'Map width',
 			[
@@ -446,6 +446,17 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 			]
 		);
 
+		$this->add_control(
+			'state_color',
+			[
+				'label' => esc_html__( 'State Name color', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} svg > foreignObject > div' => 'color: {{VALUE}}'
+				],
+			]
+		);
+
 		$this->start_controls_tabs(
 			'state_tabs'
 		);
@@ -455,7 +466,7 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 			[
 				'label' => esc_html__( 'Normal', 'textdomain' ),
 			]
-		);
+		); 
 
 		$this->add_control(
 			'state_background',
@@ -494,7 +505,7 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 					],
 				],
 				'default' => ['px',
-					'size' => 1,
+					'size' => 0.5,
 				],
 				'selectors' => [
 					'{{WRAPPER}} .state' => 'stroke-width: {{SIZE}}{{UNIT}};',
@@ -548,9 +559,6 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 						'max' => 10,
 						'step' => 0.1,
 					],
-				],
-				'default' => ['px',
-					'size' => 1,
 				],
 				'selectors' => [
 					'{{WRAPPER}} .state:hover' => 'stroke-width: {{SIZE}}{{UNIT}};',
@@ -642,9 +650,6 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 						'step' => 0.1,
 					],
 				],
-				'default' => ['px',
-					'size' => 1,
-				],
 				'selectors' => [
 					'{{WRAPPER}} .state.active' => 'stroke-width: {{SIZE}}{{UNIT}};',
 				],
@@ -691,9 +696,6 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 						'max' => 10,
 						'step' => 0.1,
 					],
-				],
-				'default' => ['px',
-					'size' => 1,
 				],
 				'selectors' => [
 					'{{WRAPPER}} .state.active:hover' => 'stroke-width: {{SIZE}}{{UNIT}};',

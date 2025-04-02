@@ -105,18 +105,33 @@ class EmuBrazilMap
                         $widgetsWrapper .= sprintf('<a xlink:href="%s"%s%s>', $link['url'], $target, $relAttr);
                     }
 
-                    $fontSize = $widget['options']['fontSize'] ?? '';
-                    $fontWeight = $widget['options']['fontWeight'] ?? '';
-                    $color = $widget['options']['color'] ?? '';
+                    $styles = [];
+
+                    // Adiciona os estilos somente se estiverem definidos
+                    if (!empty($widget['options']['fontSize'])) {
+                        $styles[] = 'font-size:' . $widget['options']['fontSize'] . ';';
+                    }
+
+                    if (!empty($widget['options']['fontWeight'])) {
+                        $styles[] = 'font-weight:;';
+                    }
+
+                    if (!empty($widget['options']['color'])) {
+                        $styles[] = 'color:' . $widget['options']['color'] . ';';
+                    }
+
+                    // Junta os estilos em uma única string
+                    $style = implode(' ', $styles);
 
                     $widgetsWrapper .= sprintf(
-                        '<foreignObject><div>%s</div></foreignObject>',
-                        $widget['content']
+                        '<foreignObject><div style="%s">%s</div></foreignObject>',
+                        $style, $widget['content']
                     );
 
                     if ($link) {
                         $widgetsWrapper .= '</a>';
                     }
+
 
                 }
 
@@ -137,33 +152,33 @@ class EmuBrazilMap
     }
 
     private $states = [
-        'AC' => ['name' => 'Acre', 'position' => [35, 125]],
-        'AL' => ['name' => 'Alagoas', 'position' => [335, 135]],
-        'AP' => ['name' => 'Amapá', 'position' => [188, 37]],
-        'AM' => ['name' => 'Amazonas', 'position' => [70, 90]],
-        'BA' => ['name' => 'Bahia', 'position' => [285, 160]],
-        'CE' => ['name' => 'Ceará', 'position' => [300, 93]],
-        'DF' => ['name' => 'Distrito Federal', 'position' => [236, 189]],
-        'ES' => ['name' => 'Espírito Santo', 'position' => [297, 230]],
-        'GO' => ['name' => 'Goiás', 'position' => [207, 197]],
-        'MA' => ['name' => 'Maranhão', 'position' => [243, 95]],
-        'MT' => ['name' => 'Mato Grosso', 'position' => [150, 170]],
-        'MS' => ['name' => 'Mato Grosso do Sul', 'position' => [150, 235]],
-        'MG' => ['name' => 'Minas Gerais', 'position' => [250, 220]],
-        'PA' => ['name' => 'Pará', 'position' => [180, 100]],
-        'PB' => ['name' => 'Paraíba', 'position' => [337, 112]],
-        'PR' => ['name' => 'Paraná', 'position' => [195, 275]],
-        'PE' => ['name' => 'Pernambuco', 'position' => [317, 122]],
-        'PI' => ['name' => 'Piauí', 'position' => [275, 120]],
-        'RJ' => ['name' => 'Rio de Janeiro', 'position' => [280, 252]],
-        'RN' => ['name' => 'Rio Grande do Norte', 'position' => [335, 99]],
-        'RS' => ['name' => 'Rio Grande do Sul', 'position' => [164, 325]],
+        'AC' => ['name' => 'Acre', 'position' => [35, 127]],
+        'AL' => ['name' => 'Alagoas', 'position' => [337, 129]],
+        'AP' => ['name' => 'Amapá', 'position' => [192, 30]],
+        'AM' => ['name' => 'Amazonas', 'position' => [80, 80]],
+        'BA' => ['name' => 'Bahia', 'position' => [285, 154]],
+        'CE' => ['name' => 'Ceará', 'position' => [305, 90]],
+        'DF' => ['name' => 'Distrito Federal', 'position' => [236.7, 183.1]],
+        'ES' => ['name' => 'Espírito Santo', 'position' => [300, 215]],
+        'GO' => ['name' => 'Goiás', 'position' => [210, 190]],
+        'MA' => ['name' => 'Maranhão', 'position' => [249, 85]],
+        'MT' => ['name' => 'Mato Grosso', 'position' => [158, 160]],
+        'MS' => ['name' => 'Mato Grosso do Sul', 'position' => [168, 228]],
+        'MG' => ['name' => 'Minas Gerais', 'position' => [258, 210]],
+        'PA' => ['name' => 'Pará', 'position' => [180, 90]],
+        'PB' => ['name' => 'Paraíba', 'position' => [339.5, 105]],
+        'PR' => ['name' => 'Paraná', 'position' => [198, 269]],
+        'PE' => ['name' => 'Pernambuco', 'position' => [317, 116]],
+        'PI' => ['name' => 'Piauí', 'position' => [279, 112]],
+        'RJ' => ['name' => 'Rio de Janeiro', 'position' => [280, 246]],
+        'RN' => ['name' => 'Rio Grande do Norte', 'position' => [335, 94]],
+        'RS' => ['name' => 'Rio Grande do Sul', 'position' => [180, 320]],
         'RO' => ['name' => 'Rondônia', 'position' => [95, 140]],
-        'RR' => ['name' => 'Roraima', 'position' => [105, 35]],
-        'SC' => ['name' => 'Santa Catarina', 'position' => [210, 300]],
-        'SP' => ['name' => 'São Paulo', 'position' => [215, 250]],
-        'SE' => ['name' => 'Sergipe', 'position' => [329, 143]],
-        'TO' => ['name' => 'Tocantins', 'position' => [218, 145]],
+        'RR' => ['name' => 'Roraima', 'position' => [110, 23]],
+        'SC' => ['name' => 'Santa Catarina', 'position' => [210, 295]],
+        'SP' => ['name' => 'São Paulo', 'position' => [225, 245]],
+        'SE' => ['name' => 'Sergipe', 'position' => [330, 136]],
+        'TO' => ['name' => 'Tocantins', 'position' => [226, 139]],
     ];
     
 
