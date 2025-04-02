@@ -131,8 +131,8 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 				'size_units' => [ 'px'],
 				'range' => [
 					'px' => [
-						'min' => 10,
-						'max' => 50,
+						'min' => -100,
+						'max' => 100,
 						'step' => 0.1,
 					],
 				],
@@ -153,8 +153,8 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 				'size_units' => [ 'px'],
 				'range' => [
 					'px' => [
-						'min' => 10,
-						'max' => 50,
+						'min' => -100,
+						'max' => 100,
 						'step' => 0.1,
 					],
 				],
