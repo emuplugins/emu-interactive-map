@@ -132,8 +132,8 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 				'range' => [
 					'px' => [
 						'min' => 10,
-						'max' => 300,
-						'step' => 5,
+						'max' => 50,
+						'step' => 0.1,
 					],
 				],
 				'default' => ['px',
@@ -153,9 +153,9 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 				'size_units' => [ 'px'],
 				'range' => [
 					'px' => [
-						'min' => -100,
-						'max' => 100,
-						'step' => 1,
+						'min' => 10,
+						'max' => 50,
+						'step' => 0.1,
 					],
 				],
 				'default' => ['px',
@@ -175,7 +175,7 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 				'size_units' => [ 'px'],
 				'range' => [
 					'px' => [
-						'min' => 0,
+						'min' => 50,
 						'max' => 300,
 						'step' => 1,
 					],
@@ -197,7 +197,7 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 				'size_units' => [ 'px'],
 				'range' => [
 					'px' => [
-						'min' => 0,
+						'min' => 50,
 						'max' => 300,
 						'step' => 1,
 					],
