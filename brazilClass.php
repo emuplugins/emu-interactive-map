@@ -6,7 +6,7 @@ class EmuBrazilMap
 {
     private $widgets;
 
-    public function __construct($widgets = []) {
+    public function __construct($widgets = [], $activeStates = []) {
         require_once 'includes/statesWidgets.php';
         $this->widgets = $widgets;
     }
@@ -17,7 +17,7 @@ class EmuBrazilMap
     }    
 
 
-    public function renderMap() {
+    public function renderMap($activeStates) {
         $mapContent = ''; // Armazena o conteúdo de todos os estados
     
         // Renderiza os estados (e seus widgets aninhados)
@@ -26,75 +26,103 @@ class EmuBrazilMap
             // Wrapper do Estado
             $widgetsWrapper = sprintf(
                 '<svg x="%d" y="%d" transform="scale(var(--map-scale))" class="widgets-container state-%s">',
-                $state['position'][0] ?? 0, // X com fallback para 0
-                $state['position'][1] ?? 0, // Y com fallback para 0
+                $state['position'][0] ?? '', // X com fallback para 0
+                $state['position'][1] ?? '', // Y com fallback para 0
                 strtolower($stateKey) // Nome do estado em minúsculas
             );
     
-            // Renderiza apenas os widgets pertencentes a este estado
             foreach ($this->widgets as $widget) {
-                if ($widget['code'] !== $stateKey) continue; // Garante que o widget pertence ao estado atual
-    
-                $class = $widget['options']['class'] ?? '';
-                $link = $widget['options']['link'] ?? null;
-    
-                // Garante que a posição existe, senão define valores padrão
-                $position = isset($widget['position']) && is_array($widget['position'])
-                    ? $widget['position']
-                    : ['x' => 0, 'y' => 0];
+                if ($widget['code'] !== $stateKey) continue;
 
-                // Se houver link, abre a tag <a>
-                if ($link) {
-                    $widgetsWrapper .= sprintf('<a xlink:href="%s" class="link__'. $class .'">', $link);
-                }
-    
-                // Renderiza o widget de texto
-                if ($widget['type'] === 'text') {
-                    $fontSize = $widget['options']['fontSize'] ?? '12px';
-                    $fontWeight = $widget['options']['fontWeight'] ?? '600';
-                    $color = $widget['options']['color'] ?? '';
-    
-                    $widgetsWrapper .= sprintf(
-                        '<text x="%d" y="%d" class="state-label %s" style="font-size:%s; font-weight:%s; fill:%s;">%s</text>',
-                        $position['x'] ?? 0, // Fallback para 0
-                        $position['y'] ?? 0, // Fallback para 0
-                        $class,
-                        $fontSize,
-                        $fontWeight,
-                        $color,
-                        $widget['content']
-                    );
-                }
-                // Renderiza o widget de imagem
-                elseif ($widget['type'] === 'image') {
+                $class = $widget['options']['class'] ?? '';
+                $id = $widget['options']['id'] ?? '';
+                $link = $widget['options']['link'] ?? null;
+
+                $position = $widget['position'] ?? ['x' => '', 'y' => ''];
+
+                $widgetsWrapper .= '<svg class="'.$class.'" style="overflow:visible">';
+
+                
+                
+                // Renderiza imagem, se existir
+                if (!empty($widget['src'])) {
+
+                    if (isset($link['url']) && !empty($link['url'])) {
+
+                        $target = !empty($link['is_external']) ? ' target="_blank"' : '';
+                        
+                        $rel = [];
+                    
+                        if ($link['is_external']) {
+                            $rel[] = 'noopener noreferrer';
+                        }
+                        if ($link['nofollow']) {
+                            $rel[] = 'nofollow';
+                        }
+                    
+                        $relAttr = !empty($rel) ? ' rel="' . implode(' ', $rel) . '"' : '';
+                    
+                        $widgetsWrapper .= sprintf('<a xlink:href="%s"%s%s>', $link['url'], $target, $relAttr);
+                    }
+
                     $width = $widget['options']['width'] ?? '30';
                     $height = $widget['options']['height'] ?? '30';
-    
+
                     $widgetsWrapper .= sprintf(
-                        '<image x="%d" y="%d" width="%s" height="%s" href="%s"%s />',
-                        $position['x'] ?? 0,
-                        $position['y'] ?? 0,
+                        '<image x="%d" y="%d" id="%s" width="%s" height="%s" href="%s" />',
+                        $position['x'],
+                        $position['y'],
+                        $id,
                         $width,
                         $height,
-                        $widget['content'],
-                        !empty($class) ? ' class="' . trim($class) . '"' : ''
+                        $widget['src']
                     );
+
+                    if ($link) {
+                        $widgetsWrapper .= '</a>';
+                    }
                 }
-                // Renderiza qualquer outro tipo de widget
-                else {
+
+                // Renderiza texto, se existir
+                if (!empty($widget['content'])) {
+
+
+                    if (isset($link['url']) && !empty($link['url'])) {
+
+                        $target = !empty($link['is_external']) ? ' target="_blank"' : '';
+                        
+                        $rel = [];
+                    
+                        if ($link['is_external']) {
+                            $rel[] = 'noopener noreferrer';
+                        }
+                        if ($link['nofollow']) {
+                            $rel[] = 'nofollow';
+                        }
+                    
+                        $relAttr = !empty($rel) ? ' rel="' . implode(' ', $rel) . '"' : '';
+                    
+                        $widgetsWrapper .= sprintf('<a xlink:href="%s"%s%s>', $link['url'], $target, $relAttr);
+                    }
+
+                    $fontSize = $widget['options']['fontSize'] ?? '';
+                    $fontWeight = $widget['options']['fontWeight'] ?? '';
+                    $color = $widget['options']['color'] ?? '';
+
                     $widgetsWrapper .= sprintf(
-                        '<g transform="translate(%d, %d)"%s>%s</g>',
-                        $position['x'] ?? 0,
-                        $position['y'] ?? 0,
-                        !empty($class) ? ' class="' . trim($class) . '"' : '',
+                        '<foreignObject><div>%s</div></foreignObject>',
                         $widget['content']
                     );
+
+                    if ($link) {
+                        $widgetsWrapper .= '</a>';
+                    }
+
                 }
-    
-                // Fecha a tag <a> se houver link
-                if ($link) {
-                    $widgetsWrapper .= '</a>';
-                }
+
+                // fechando wrapper do widget
+                $widgetsWrapper .= '</svg>';
+
             }
     
             // Fecha o wrapper do estado
@@ -105,12 +133,11 @@ class EmuBrazilMap
         }
     
         // Passa o conteúdo completo para a função doBrazilMap()
-        return doBrazilMap($mapContent);
+        return doBrazilMap($mapContent, $activeStates);
     }
-        
 
     private $states = [
-        'AC' => ['name' => 'Acre', 'position' => [35, 135]],
+        'AC' => ['name' => 'Acre', 'position' => [35, 125]],
         'AL' => ['name' => 'Alagoas', 'position' => [335, 135]],
         'AP' => ['name' => 'Amapá', 'position' => [188, 37]],
         'AM' => ['name' => 'Amazonas', 'position' => [70, 90]],
@@ -131,7 +158,7 @@ class EmuBrazilMap
         'RJ' => ['name' => 'Rio de Janeiro', 'position' => [280, 252]],
         'RN' => ['name' => 'Rio Grande do Norte', 'position' => [335, 99]],
         'RS' => ['name' => 'Rio Grande do Sul', 'position' => [164, 325]],
-        'RO' => ['name' => 'Rondônia', 'position' => [90, 150]],
+        'RO' => ['name' => 'Rondônia', 'position' => [95, 140]],
         'RR' => ['name' => 'Roraima', 'position' => [105, 35]],
         'SC' => ['name' => 'Santa Catarina', 'position' => [210, 300]],
         'SP' => ['name' => 'São Paulo', 'position' => [215, 250]],
