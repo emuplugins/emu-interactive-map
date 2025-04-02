@@ -446,7 +446,7 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 			]
 		);
 
-		$repeater->add_group_control(
+		$this->add_group_control(
 			\Elementor\Group_Control_Typography::get_type(),
 			[
 				'name' => 'state_typography',
