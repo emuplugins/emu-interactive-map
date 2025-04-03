@@ -89,7 +89,11 @@ ob_start();
 .brazil-map svg div.widget-image:hover:after,.brazil-map svg a:focus-within div.widget-image:after{
     opacity: 1;
 }
-
+.brazil-map svg a:focus-within{
+    outline: none;
+    border:none;
+    box-shadow: none;
+}
 
 </style>
 
