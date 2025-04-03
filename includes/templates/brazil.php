@@ -86,7 +86,7 @@ ob_start();
     white-space: pre;
 }
 
-.brazil-map svg div.widget-image:hover:after,.brazil-map svg div.widget-image:hover:focus-within {
+.brazil-map svg div.widget-image:hover:after,.brazil-map svg a:focus-within div.widget-image:after{
     opacity: 1;
 }
 
