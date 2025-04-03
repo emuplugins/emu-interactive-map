@@ -83,6 +83,7 @@ ob_start();
     transition: all 0.4s;
     opacity: 0;
     transform: translateX(-50%); /* Centraliza no meio */
+    white-space: pre;
 }
 
 .brazil-map svg div.widget-image:hover:after {
