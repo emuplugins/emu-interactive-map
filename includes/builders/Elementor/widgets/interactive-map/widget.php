@@ -1001,5 +1001,7 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
         // renderizando mapa
         echo $mapaBrasil->renderMap($activeStates ?? '');
 
+		echo '<script src="' . EIM_PLUGIN_URL . "assets/js/script.js" . '"></script>';
+
 	}
 }
