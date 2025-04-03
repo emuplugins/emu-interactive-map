@@ -610,7 +610,7 @@ xml:space="preserve">
 
 </svg>
 </div>
-<!-- Creditos to olx.com.br -->
+<!-- Credits to olx.com.br -->
 
 <?php 
 
