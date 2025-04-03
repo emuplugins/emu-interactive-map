@@ -262,8 +262,8 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 		$repeater->add_control(
 			'tolltip_text',
 			[
-				'label' => esc_html__( 'Tolltip Text', 'textdomain' ),
-				'type' => \Elementor\Controls_Manager::TEXT,
+				'label' => esc_html__( 'Tooltip Text', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::TEXTAREA,
 				'default' => esc_html__( 'Tooltip' , 'textdomain' ),
 				'label_block' => true,
 				'selectors' => [
