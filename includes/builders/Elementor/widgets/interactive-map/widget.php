@@ -497,7 +497,7 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 				'label' => esc_html__( 'State Name color', 'textdomain' ),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .default > div.widget-content > div > div' => 'color: {{VALUE}}'
+					'{{WRAPPER}} .default div.widget-content > div > div' => 'color: {{VALUE}}'
 				],
 			]
 		);
@@ -506,7 +506,7 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 			\Elementor\Group_Control_Typography::get_type(),
 			[
 				'name' => 'state_typography',
-				'selector' => 'html body {{WRAPPER}} .default > div.widget-content > div > div',
+				'selector' => 'html body {{WRAPPER}} .default div.widget-content > div > div',
 			]
 		);
 
@@ -528,7 +528,7 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 					'unit' => 'em',
 				],
 				'selectors' => [
-					'html body {{WRAPPER}} .default > div.widget-content > div' => 'transform: translate( {{state_pos_x.SIZE}}{{state_pos_x.UNIT}}, {{state_pos_y.SIZE}}{{state_pos_y.UNIT}});',
+					'html body {{WRAPPER}} .default div.widget-content > div' => 'transform: translate( {{state_pos_x.SIZE}}{{state_pos_x.UNIT}}, {{state_pos_y.SIZE}}{{state_pos_y.UNIT}});',
 				],
 			]
 		);
@@ -551,7 +551,7 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 					'unit' => 'em',
 				],
 				'selectors' => [
-					'html body {{WRAPPER}} .default > div.widget-content > div' => 'transform: translate( {{state_pos_x.SIZE}}{{state_pos_x.UNIT}}, {{state_pos_y.SIZE}}{{state_pos_y.UNIT}});',
+					'html body {{WRAPPER}} .default div.widget-content > div' => 'transform: translate( {{state_pos_x.SIZE}}{{state_pos_x.UNIT}}, {{state_pos_y.SIZE}}{{state_pos_y.UNIT}});',
 				],
 			]
 		);
