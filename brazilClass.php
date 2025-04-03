@@ -42,7 +42,7 @@ class EmuBrazilMap
 
                 $widgetsWrapper .= '<svg class="'.$class.'" style="overflow:visible">';
 
-                $widgetsWrapper .= '<foreignobject style="width:100px; height:100px; overflow:visible">';
+                $widgetsWrapper .= '<foreignobject style="width:1px; height:1px; overflow:visible">';
                 
                 // Renderiza imagem, se existir
                 if (!empty($widget['src'])) {
@@ -62,7 +62,7 @@ class EmuBrazilMap
                     
                         $relAttr = !empty($rel) ? ' rel="' . implode(' ', $rel) . '"' : '';
                     
-                        $widgetsWrapper .= sprintf('<a xlink:href="%s"%s%s>', $link['url'], $target, $relAttr);
+                        $widgetsWrapper .= sprintf('<a href="%s"%s%s>', $link['url'], $target, $relAttr);
                     }
 
                     $width = $widget['options']['width'] ?? '30';
@@ -107,7 +107,7 @@ class EmuBrazilMap
                     
                         $relAttr = !empty($rel) ? ' rel="' . implode(' ', $rel) . '"' : '';
                     
-                        $widgetsWrapper .= sprintf('<a xlink:href="%s"%s%s>', $link['url'], $target, $relAttr);
+                        $widgetsWrapper .= sprintf('<a href="%s"%s%s>', $link['url'], $target, $relAttr);
                     }
 
                     $styles = [];

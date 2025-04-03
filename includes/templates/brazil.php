@@ -70,7 +70,25 @@ ob_start();
 
 .brazil-map svg div.widget-image img{
     object-fit: contain;
+}.brazil-map svg div.widget-image {
+    position: relative; /* Garante que o pseudo-elemento se posicione corretamente */
 }
+
+.brazil-map svg div.widget-image:after {
+    content: "teste"; /* Ativar o conteúdo */
+    position: absolute;
+    font-size: 0.8em;
+    font-family: sans-serif;
+    line-height: 1em;
+    transition: all 0.4s;
+    opacity: 0;
+    transform: translateX(-50%); /* Centraliza no meio */
+}
+
+.brazil-map svg div.widget-image:hover:after {
+    opacity: 1;
+}
+
 
 </style>
 

@@ -165,6 +165,9 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 			[
 				'label' => esc_html__( 'Choose Image', 'textdomain' ),
 				'type' => \Elementor\Controls_Manager::MEDIA,
+				'default' => [
+					'url' => EIM_PLUGIN_URL . 'assets/images/mark.svg',
+				],
 			]
 		);
 
@@ -226,7 +229,7 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 					],
 				],
 				'default' => ['px',
-					'size' => 50,
+					'size' => 15,
 				],
 				'selectors' => [
 					'{{WRAPPER}} {{CURRENT_ITEM}} img, {{WRAPPER}} {{CURRENT_ITEM}} div.widget-image' => 'width: {{SIZE}}{{UNIT}};',
@@ -248,10 +251,148 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 					],
 				],
 				'default' => ['px',
-					'size' => 50,
+					'size' => 20,
 				],
 				'selectors' => [
 					'{{WRAPPER}} {{CURRENT_ITEM}} img, {{WRAPPER}} {{CURRENT_ITEM}} div.widget-image ' => 'height: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$repeater->add_control(
+			'tolltip_text',
+			[
+				'label' => esc_html__( 'Tolltip Text', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => esc_html__( 'Tooltip' , 'textdomain' ),
+				'label_block' => true,
+				'selectors' => [
+					'{{WRAPPER}} {{CURRENT_ITEM}} div.widget-image:after' => 'content: "{{VALUE}}";',
+				],
+			]
+		);
+
+		$repeater->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			[
+				'name' => 'tooltip_typography',
+				'selector' => '{{WRAPPER}} {{CURRENT_ITEM}} div.widget-image:after',
+			]
+		);
+
+		$repeater->add_control(
+			'tolltip_color',
+			[
+				'label' => esc_html__( 'Color', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} {{CURRENT_ITEM}} div.widget-image:after' => 'color: {{VALUE}}!important'
+				],
+				'default' => '#ffffff',
+			]
+		);
+
+
+		$repeater->add_control(
+			'tolltip_background',
+			[
+				'label' => esc_html__( 'Color', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} {{CURRENT_ITEM}} div.widget-image:after' => 'background-color: {{VALUE}}!important'
+				],
+				'default' => '#000000c9',
+			]
+		);
+
+		$repeater->add_responsive_control(
+			'tooltip_pos_x',
+			[
+				'label' => esc_html__( 'Horizontal Position', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => ['px'],
+				'range' => [
+					'px' => [
+						'min' => -100,
+						'max' => 100,
+						'step' => 1,
+					],
+				],
+				'default' => ['px',
+					'size' => 50,
+				],
+				'selectors' => [
+					'{{WRAPPER}} {{CURRENT_ITEM}} div.widget-image:after' => 'left: {{SIZE}}%;',
+				],
+			]
+		);
+
+        $repeater->add_responsive_control(
+			'tooltip_pos_y',
+			[
+				'label' => esc_html__( 'Vertical Position', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::SLIDER,
+				'size_units' => ['px'],
+				'range' => [
+					'px' => [
+						'min' => -100,
+						'max' => 100,
+						'step' => 1,
+					],
+				],
+				'default' => ['px',
+					'size' => -100,
+				],
+				'selectors' => [
+					'{{WRAPPER}} {{CURRENT_ITEM}} div.widget-image:after' => 'bottom: {{SIZE}}%',
+				],
+			]
+		);
+
+		$repeater->add_group_control(
+			\Elementor\Group_Control_Border::get_type(),
+			[
+				'name' => 'tooltip_border',
+				'selector' => '{{WRAPPER}} {{CURRENT_ITEM}} div.widget-image:after',
+			]
+		);
+
+		$repeater->add_control(
+			'tooltip_border-radius',
+			[
+				'label' => esc_html__( 'Border radius', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
+				'default' => [
+					'top' => 0.2,
+					'right' => 0.2,
+					'bottom' => 0.2,
+					'left' => 0.2,
+					'unit' => 'em',
+					'isLinked' => true,
+				],
+				'selectors' => [
+					'{{WRAPPER}} {{CURRENT_ITEM}} div.widget-image:after' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+		
+		$repeater->add_control(
+			'tooltip_padding',
+			[
+				'label' => esc_html__( 'Border radius', 'textdomain' ),
+				'type' => \Elementor\Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
+				'default' => [
+					'top' => 0.4,
+					'right' => 1,
+					'bottom' => 0.4,
+					'left' => 1,
+					'unit' => 'em',
+					'isLinked' => true,
+				],
+				'selectors' => [
+					'{{WRAPPER}} {{CURRENT_ITEM}} div.widget-image:after' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
@@ -273,7 +414,6 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 			[
 				'label' => esc_html__( 'Content', 'textdomain' ),
 				'type' => \Elementor\Controls_Manager::TEXTAREA,
-				'default' => esc_html__( 'Sample Text' , 'textdomain' ),
 				'label_block' => true,
 			]
 		);
@@ -419,7 +559,7 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 		$repeater->add_group_control(
 			\Elementor\Group_Control_Border::get_type(),
 			[
-				'name' => 'content_border-radius',
+				'name' => 'content_border',
 				'selector' => '{{WRAPPER}} {{CURRENT_ITEM}} div.widget-content > div > div',
 			]
 		);
@@ -518,8 +658,8 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 				'size_units' => [ 'em' ],
 				'range' => [
 					'em' => [
-						'min' => -10,
-						'max' => 10,
+						'min' => -3,
+						'max' => 3,
 						'step' => 0.1,
 					],
 				],
@@ -541,8 +681,8 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 				'size_units' => [ 'em' ],
 				'range' => [
 					'em' => [
-						'min' => -10,
-						'max' => 10,
+						'min' => -3,
+						'max' => 3,
 						'step' => 0.1,
 					],
 				],
@@ -859,7 +999,7 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 		}
 
         // renderizando mapa
-        echo $mapaBrasil->renderMap($activeStates);
+        echo $mapaBrasil->renderMap($activeStates ?? '');
 
 	}
 }
