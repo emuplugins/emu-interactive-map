@@ -57,15 +57,19 @@ ob_start();
     overflow: visible;
 }
 
-.brazil-map  svg > foreignObject > div{
+.brazil-map  svg div.widget-content > div{
     font-size:7px;
     font-weight: 500;
     color:white;
     font-family: sans-serif;
 }
-.brazil-map  svg > foreignObject,.brazil-map  svg > foreignObject > div > div{
+.brazil-map  svg > div.widget-content,.brazil-map  svg > div.widget-content > div > div{
     width:20px;
     height: 20px;
+}
+
+.brazil-map svg div.widget-image img{
+    object-fit: contain;
 }
 
 </style>
