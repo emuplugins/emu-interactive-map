@@ -37,12 +37,13 @@ class EmuBrazilMap
                 $class = $widget['options']['class'] ?? '';
                 $id = $widget['options']['id'] ?? '';
                 $link = $widget['options']['link'] ?? null;
+                $customAttr = $widget['options']['customAttr'] ?? null;
 
                 $position = $widget['position'] ?? ['x' => '', 'y' => ''];
 
                 $widgetsWrapper .= '<svg class="'.$class.'" style="overflow:visible;">';
 
-                $widgetsWrapper .= '<foreignobject style="width:1px; height:1px; overflow:visible; transform:translate(var(--translate-foreing-x),var(--translate-foreing-y))">';
+                $widgetsWrapper .= '<foreignobject style="width:1px; height:1px; overflow:visible; transform:translate(var(--translate-foreing-x),var(--translate-foreing-y))" '.$customAttr . '>';
                 
                 // Renderiza imagem, se existir
                 if (!empty($widget['src'])) {

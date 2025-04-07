@@ -2,14 +2,14 @@
 // element-test.php
 
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
-
+use Bricks\Helpers;
 class EmuInteractiveMap_Bricks extends \Bricks\Element {
   
 	// Element properties
   public $category     = 'general'; // Use predefined element category 'general'
   public $name         = 'emu-interactive-map'; // Make sure to prefix your elements
   public $icon         = 'ti-bolt-alt'; // Themify icon font class
-  public $css_selector = '.emu-interactive-map-wrapper'; // Default CSS selector
+  public $css_selector = 'emu-interactive-map-wrapper'; // Default CSS selector
 
   // Return localised element label
   public function get_label() {
@@ -43,7 +43,7 @@ class EmuInteractiveMap_Bricks extends \Bricks\Element {
       'group' => 'widgets',
       'label' => esc_html__( 'Repeater', 'bricks' ),
       'type' => 'repeater',
-	    'selector'      => '.repeater-item foreignObject',
+	    'selector'      => 'fieldId',
       'titleProperty' => 'title', // Default 'title'
       'default' => [
         [
@@ -52,6 +52,9 @@ class EmuInteractiveMap_Bricks extends \Bricks\Element {
           'imageSize' => '20px',
           'imagePositionY' => '-5px',
           'imagePositionX' => '13px',
+          'titlePosY' => '0px',
+          'titlePosX' => '0px',
+          'id' => Helpers::generate_random_id( false ),
         ]
       ],
       'placeholder' => esc_html__( 'Widget', 'bricks' ),
@@ -216,7 +219,7 @@ class EmuInteractiveMap_Bricks extends \Bricks\Element {
           'label' => esc_html__('Title Position Y', 'bricks'),
           'type'  => 'slider',
           'units' => [
-            '%' => [
+            'px' => [
               'min' => -50,
               'max' => 50,
               'step' => 1,
@@ -228,7 +231,7 @@ class EmuInteractiveMap_Bricks extends \Bricks\Element {
               'selector' => '.widget-image:after',
             ],
           ],
-          'default'       => ['0%']
+          'default'       => ['0px']
         ],
         'link' => [
           'label' => esc_html__( 'Link', 'bricks' ),
@@ -630,7 +633,7 @@ class EmuInteractiveMap_Bricks extends \Bricks\Element {
 	// criando um novo mapa
 	$mapaBrasil = new EmuBrazilMap;
 
-	if (!empty($this->settings['activeStates'])) {    
+	if (is_array($this->settings['activeStates']) && !empty($this->settings['activeStates'])) {    
 
 		$activeStates = [];
 	
@@ -681,6 +684,7 @@ class EmuInteractiveMap_Bricks extends \Bricks\Element {
 				],
         'titleHover' => $item['titleHover'] ?? '',
 			'class' => 'repeater-item',
+			'customAttr' => 'data-field-id="' . $item['id'] .'"',
 			],
 			'position' => [
 				'x' => 0,
