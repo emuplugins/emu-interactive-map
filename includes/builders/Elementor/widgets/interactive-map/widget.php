@@ -970,6 +970,7 @@ class EmuInteractiveMap_Elementor extends \Elementor\Widget_Base {
 			}
 		}
 
+
 		if ( $settings['list'] ) {
 			foreach (  $settings['list'] as $item ) {
 

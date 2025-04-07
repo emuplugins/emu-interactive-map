@@ -24,9 +24,13 @@ ob_start();
     --state-stroke-width: 0.5;
     --state-fill-color:rgba(5, 100, 60, 0.18);
     --state-fill-color-hover:rgb(11, 141, 102);
-    --map-scale: 1.4;
+    --map-scale: 2.4;
     --map-width: calc(353.845px * var(--map-scale));
     --map-height: calc(367.766px * var(--map-scale));
+    --translate-foreing-x:0px;
+    --translate-foreing-y:0px;
+    --translate-image-x:0px;
+    --translate-image-y:0px;
     width: var(--map-width);
     height: var(--map-height);
     font-size:10px;
@@ -69,6 +73,7 @@ ob_start();
 }
 
 .brazil-map svg div.widget-image img{
+    transform: translate(var(--translate-image-x),var(--translate-image-y));
     object-fit: contain;
 }.brazil-map svg div.widget-image {
     position: relative; /* Garante que o pseudo-elemento se posicione corretamente */
@@ -82,11 +87,11 @@ ob_start();
     line-height: 1em;
     transition: all 0.4s;
     opacity: 0;
-    transform: translateX(-50%); /* Centraliza no meio */
+    /* transform: translateX(-50%); Centraliza no meio */
     white-space: pre;
 }
 
-.brazil-map svg div.widget-image:hover:after,.brazil-map svg a:focus-within div.widget-image:after{
+.brazil-map svg div.widget-image:hover:after,.brazil-map svg a:focus-within div.widget-image:after, .brazil-map svg div.show-title:after{
     opacity: 1;
 }
 .brazil-map svg a:focus-within{
@@ -94,6 +99,8 @@ ob_start();
     border:none;
     box-shadow: none;
 }
+
+
 
 </style>
 
@@ -325,9 +332,6 @@ xml:space="preserve">
          147.909,237.584 145.413,246.336 146.411,248.82 149.407,249.219 160.988,248.623 163.485,249.518 165.182,248.721
          167.679,250.811 168.976,265.23 173.371,266.027 175.966,263.938 180.196,265.885 183.556,265.082" />
 
-     <polygon class="state" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
-         157.108,70.571 159.676,67.574 161.817,63.864 159.534,63.864 156.251,66.717 154.681,68.573" />
-    
      <polygon id="PI" class="state <?php echo !empty($activeStates['PI']) ? 'active' : ''; ?>" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
          303.146,108.199 302.481,105.345 299.818,105.345 298.961,100.017 299.247,97.543 297.915,96.401 297.724,94.308 298.392,93.167
          296.679,91.55 296.012,87.649 297.629,84.89 296.772,80.132 294.585,78.516 294.3,76.422 295.833,73.344 292.888,73.146

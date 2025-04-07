@@ -22,10 +22,10 @@ class EmuBrazilMap
     
         // Renderiza os estados (e seus widgets aninhados)
         foreach ($this->states as $stateKey => $state) {
-            
+            //  transform="scale(var(--map-scale))"
             // Wrapper do Estado
             $widgetsWrapper = sprintf(
-                '<svg x="%d" y="%d" transform="scale(var(--map-scale))" class="widgets-container state-%s">',
+                '<svg x="%d" y="%d" class="widgets-container state-%s">',
                 $state['position'][0] ?? '', // X com fallback para 0
                 $state['position'][1] ?? '', // Y com fallback para 0
                 strtolower($stateKey) // Nome do estado em minúsculas
@@ -40,39 +40,72 @@ class EmuBrazilMap
 
                 $position = $widget['position'] ?? ['x' => '', 'y' => ''];
 
-                $widgetsWrapper .= '<svg class="'.$class.'" style="overflow:visible">';
+                $widgetsWrapper .= '<svg class="'.$class.'" style="overflow:visible;">';
 
-                $widgetsWrapper .= '<foreignobject style="width:1px; height:1px; overflow:visible">';
+                $widgetsWrapper .= '<foreignobject style="width:1px; height:1px; overflow:visible; transform:translate(var(--translate-foreing-x),var(--translate-foreing-y))">';
                 
                 // Renderiza imagem, se existir
                 if (!empty($widget['src'])) {
 
                     if (isset($link['url']) && !empty($link['url'])) {
 
-                        $target = !empty($link['is_external']) ? ' target="_blank"' : '';
-                        
+                        $target = $link['is_external'] ? ' target="_blank"' : '';
+                       
                         $rel = [];
-                    
-                        if ($link['is_external']) {
-                            $rel[] = 'noopener noreferrer';
+                        $arialabel = '';
+                        $title = '';
+
+                        // tratando do rel, se for bricks ou elementor
+                        if ($link['is_Bricks']) {
+
+                            $rel = [];
+
+                            if ($link['rel']) {
+                                $rel[] = $link['rel'];
+                            }
+                            if ($link['arialabel']) {
+                                $arialabel = 'aria-label="' . $link['arialabel'] . '"';
+                            }
+
+                            echo $link['arialabel'];
+
+                            if ($link['title']) {
+                                $title = 'title="' . $link['title'] . '"';
+                            }
+
+                            $relAttr = !empty($rel) ? ' rel="' . implode(' ', $rel) . '"' : '';
+
+                        }else{
+
+                            if ($link['is_external']) {
+                                $rel[] = 'noopener noreferrer';
+                            }
+                            if ($link['nofollow']) {
+                                $rel[] = 'nofollow';
+                            }
+                             
+                          
+                            $relAttr = !empty($rel) ? ' rel="' . implode(' ', $rel) . '"' : '';
+                            
                         }
-                        if ($link['nofollow']) {
-                            $rel[] = 'nofollow';
-                        }
-                    
-                        $relAttr = !empty($rel) ? ' rel="' . implode(' ', $rel) . '"' : '';
-                    
-                        $widgetsWrapper .= sprintf('<a href="%s"%s%s>', $link['url'], $target, $relAttr);
+
+                        $widgetsWrapper .= sprintf('<a href="%s" %s %s %s %s>', $link['url'], $target, $relAttr, $arialabel, $title);
+                        
                     }
 
-                    $width = $widget['options']['width'] ?? '30';
+                    $width = $widget['options']['width'] ?? 'fit-content';
                     $height = $widget['options']['height'] ?? '30';
 
-                    $widgetsWrapper .= '<div class="widget-image">';
+                    if($widget['options']['titleHover']){
+                        $widgetsWrapper .= '<div class="widget-image show-title">';
+                    }else{
+                        $widgetsWrapper .= '<div class="widget-image">';
+                    }
+
                     $widgetsWrapper .= '';
 
                     $widgetsWrapper .= sprintf(
-                        '<image x="%d" y="%d" id="%s" width="%s" height="%s" src="%s" />',
+                        '<image x="%d" y="%d" id="%s" style="min-width:%s" height="%s" src="%s" />',
                         $position['x'],
                         $position['y'],
                         $id,
@@ -129,7 +162,7 @@ class EmuBrazilMap
                     $style = implode(' ', $styles);
 
                     $widgetsWrapper .= sprintf(
-                        '<div class="widget-content"><div style="%s"><div >%s</div></div></div>',
+                        '<div class="widget-content"><div style="%s"><div style="min-width:fit-content">%s</div></div></div>',
                         $style, $widget['content']
                     );
 
